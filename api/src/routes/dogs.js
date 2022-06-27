@@ -15,7 +15,8 @@ const getApiInfo = async () => {
             weight: e.weight.metric,
             life_span: e.life_span,
             image: e.image.url,
-            temperament: e.temperament
+            //convert temperament to array of strings
+            temperament: e.temperament?.split(', ')
         }
     })
     return apiInfo

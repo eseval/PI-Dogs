@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     const tempApi = await axios.get(url);
     try {
     const temperaments = tempApi.data.map(e => e.temperament).map(e => e?.split(', '));
-    // console.log(temperaments)
+    console.log(temperaments)
     let uniqueTemperaments = [...new Set(temperaments.flat())];
     // console.log(uniqueTemperaments)
         uniqueTemperaments.forEach(async e => {
@@ -24,9 +24,9 @@ router.get('/', async (req, res, next) => {
         });
     uniqueTemperaments = await Temperament.findAll()
     // console.log(uniqueTemperaments)
-    let finalTemps = uniqueTemperaments.map(e => e.dataValues.name)
+    // let finalTemps = uniqueTemperaments.map(e => e.dataValues.name)
     // console.log(finalTemps)
-    res.send(finalTemps)
+    res.send(uniqueTemperaments)
     }
     catch (err) {
         next(err);
