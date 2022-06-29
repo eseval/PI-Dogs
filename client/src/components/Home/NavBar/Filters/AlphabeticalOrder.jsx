@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-
+import { orderByName } from "../../../../actions";
 import './AlphabeticalOrder.css';
 
 export default function AlphabeticalOrder() {
@@ -8,7 +8,7 @@ export default function AlphabeticalOrder() {
 
     function handleOnChange(e) {
         e.preventDefault()
-        dispatch()
+        dispatch(orderByName(e.target.value))
     }
 
     return(

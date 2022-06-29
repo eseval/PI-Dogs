@@ -24,9 +24,9 @@ router.get('/', async (req, res, next) => {
         });
     uniqueTemperaments = await Temperament.findAll()
     // console.log(uniqueTemperaments)
-    // let finalTemps = uniqueTemperaments.map(e => e.dataValues.name)
-    // console.log(finalTemps)
-    res.send(uniqueTemperaments)
+    let finalTemps = uniqueTemperaments.map(e => e.dataValues.name)
+    console.log(finalTemps)
+    res.send(finalTemps)
     }
     catch (err) {
         next(err);

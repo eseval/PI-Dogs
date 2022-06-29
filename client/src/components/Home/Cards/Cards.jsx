@@ -4,15 +4,16 @@ import './Cards.css';
 
 export default function Cards({ allDogs }) {
     return (
-        <div>
+        <div className='cards'>
             { allDogs.length !== 0 ? allDogs.map((dog, i) => (
                 <Card
                     key={i}
-                    weight={dog.weight}
+                    weight={dog.weight + " kg"}
                     id={dog.id}
                     image={dog.image}
-                    name={dog.name}
+                    name={'Breed: ' + dog.name}
                     temperament={dog.temperament}
+                    height={dog.height+ " cm"}
                 />
             )):
             <div>

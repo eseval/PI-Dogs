@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cards from "./Cards/Cards";
 import './Home.css';
-import AlphabeticalOrder from "./NavBar/Filters/AlphabeticalOrder";
 import ByCreation from './NavBar/Filters/ByCreation';
+import ByTemperament from './NavBar/Filters/ByTemperament';
 import ByWeight from './NavBar/Filters/ByWeight';
-
-
-import { getDogs } from "../../actions";
+import SearchBar from './NavBar/SearchBar';
+import AlphabeticalOrder from "./NavBar/Filters/AlphabeticalOrder";
+import { getTemperaments, getDogs } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import Paginated from "./Paginated/Paginated";
 
@@ -32,7 +32,8 @@ export default function Home() {
     }
 
     useEffect(() => {
-        dispatch(getDogs());
+        dispatch(getDogs())
+        dispatch(getTemperaments());
     }, [dispatch]);
 
     function handleClick(e) {
@@ -41,20 +42,30 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className="body">
+            <div>
+                <SearchBar />
+            </div>
             <Link to= '/dog'>Crete Dog</Link>
             <h1>Dog Shelter</h1>
             <button onClick={e => {handleClick(e)}}>
                 Reset Dogs
             </button>
             <div>
-                {/* <AlphabeticalOrder/>
-                <ByCreation/>
+                {/* <ByTemperament/> */}
                 <AlphabeticalOrder/>
-                <ByWeight/> */}
+                {/* <ByCreation/> */}
+                <ByWeight/>
+            </div>
+            <div className="paginated">
+                <Paginated
+                    dogsPerPage={dogsPerPage}
+                    allDogs={allDogs}
+                    paginado={paginado}
+                />
             </div>
             <div>
-                <Cards allDogs={allDogs}/>
+                <Cards allDogs={currentDogs}/>
             </div>
         </div>
     )
