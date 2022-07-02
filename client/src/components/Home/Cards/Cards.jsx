@@ -11,9 +11,9 @@ export default function Cards({ allDogs }) {
                     weight={dog.weight + " kg"}
                     id={dog.id}
                     image={dog.image}
-                    name={'Breed: ' + dog.name}
-                    temperament={dog.temperament}
-                    height={dog.height+ " cm"}
+                    name={dog.name}
+                    temperament={dog.temperament?.join(', ')}
+                    // height={dog.height+ " cm"}
                 />
             )):
             <div>

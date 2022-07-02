@@ -51,10 +51,10 @@ export default function Home() {
             <button onClick={e => {handleClick(e)}}>
                 Reset Dogs
             </button>
-            <div>
-                {/* <ByTemperament/> */}
+            <div className="filters">
+                <ByTemperament/>
                 <AlphabeticalOrder/>
-                {/* <ByCreation/> */}
+                <ByCreation/>
                 <ByWeight/>
             </div>
             <div className="paginated">

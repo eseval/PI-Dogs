@@ -79,6 +79,20 @@ export function orderByWeight(payload) {
     }
 }
 
+export function orderByCreation(payload) {
+    return {
+        type: "ORDER_BY_CREATION",
+        payload
+    }
+}
+
+export function postDog(dog) {
+    return async function(dispatch) {
+        const created = await axios.post('http://localhost:3001/dogs', dog);
+        return created
+    }
+}
+
 export function deleteDog(id) {
     return async function(dispatch) {
         await axios.delete(`http://localhost:3001/dogs/${id}`);
@@ -86,5 +100,12 @@ export function deleteDog(id) {
             type: 'DELETE_DOG',
             payload: id
         })
+    }
+}
+
+export function clearState(){
+    return {
+        type: "CLEAR_STATE",
+        payload: {}
     }
 }

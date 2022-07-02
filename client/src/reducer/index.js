@@ -33,22 +33,25 @@ export default function rootReducer(state = initialState, action){
                 temperaments: action.payload
             }
         case 'FILTER_BY_TEMPERAMENT':
-            const allDogs = state.allDogs;
-            const array = []
-            const temperamentsFiltered = action.payload === 'All' ? allDogs
-            : (() => {for(let i = 0; i < allDogs.length; i++){
-                if (isNaN(allDogs[i].id)){
-                    if(allDogs[i].temperaments.map(e => e.name).includes(action.payload)){
-                        array.push(allDogs[i])}
+            const allDogsTemps = [...state.dogs]
+            console.log(allDogsTemps)
+            const filterTemps = action.payload
+            let arr = []
+            if(filterTemps){
+                allDogsTemps.forEach(dog => {
+                    if(dog.temperaments && typeof dog.temperaments === 'string'){
+                        if(dog.temperaments.includes(action.payload)) arr.push(dog)
+                        console.log(dog.temperaments)
+                    } else if(dog.temperaments && typeof dog.temperaments !== 'string'){
+                        dog.temperaments.map(e => {
+                            if(e.name.includes(action.payload)) arr.push(dog)
+                        })
                     }
-                    if(allDogs[i].temperaments.includes(action.payload)){
-                        array.push(allDogs[i])
-                    }
-                }return array})()
+                })
+            }
             return {
                 ...state,
-                dogs: temperamentsFiltered,
-                filters: temperamentsFiltered
+                dogs: arr
             }
         case 'ORDER_BY_NAME':
             let allDg = [...state.dogs]
@@ -67,25 +70,54 @@ export default function rootReducer(state = initialState, action){
                 ...state,
                 dogs: action.payload === 'All' ? state.allDogs : allDg,
             }
-        case 'ORDER_BY_WEIGHT':
-            const all = [...state.dogs]
-            const filterByWeight = all.sort((a,b) => {
-                if(a.rating < b.rating){
-                    return action.payload === 'Asc' ? 1 : -1
+        case 'ORDER_BY_CREATION':
+            let filter
+            if(state.filters.length === 0){
+                let allDogsCreated = [...state.allDogs]
+                filter = action.payload === 'api' ? allDogsCreated.filter(e=> !isNaN(e.id) === true) : allDogsCreated.filter(e => e.created === true)
+                return {
+                    ...state,
+                    dogs: action.payload === 'all' ? allDogsCreated : filter
                 }
-                if(a.rating > b.rating){
-                    return action.payload === 'Desc' ? 1 : -1
-                }return 0
+            } else if(state.filters.length > 0){
+                let allDogsCreated = [...state.filters]
+                filter = action.payload === 'api' ? allDogsCreated.filter(e => e.created === false) : allDogsCreated.filter(e => e.created === true)
+                return {
+                    ...state,
+                    dogs: action.payload === 'all' ? allDogsCreated : filter
+                }
+            } return
+        case 'ORDER_BY_WEIGHT':
+            let allDogsWeight = [...state.dogs]
+            allDogsWeight = allDogsWeight.sort((a,b) => {
+                if(a.weight < b.weight){
+                    return action.payload === 'Asc' ? -1 : 1
+            }
+            if(a.weight > b.weight){
+                return action.payload === 'Desc' ? -1 : 1
+            }
+            else{
+                return 0
+            }
             })
             return {
                 ...state,
-                dogs: action.payload === 'All' ? state.allDogs : filterByWeight,
+                dogs: action.payload === 'All' ? state.allDogs : allDogsWeight,
+            }
+        case 'POST_DOG':
+            return {
+                ...state,
             }
         case 'DELETE_DOG':
             return {
                 ...state,
                 dogs: state.dogs.filter(e => e.id !== action.payload),
                 allDogs: state.allDogs.filter(e => e.id !== action.payload)
+            }
+        case 'CLEAR_STATE':
+            return {
+                ...state,
+                details: action.payload,
             }
         default:
             return state;
