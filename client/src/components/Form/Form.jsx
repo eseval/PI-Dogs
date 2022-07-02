@@ -36,4 +36,56 @@ export default function Form() {
 
 
     const [errors, setErrors] = useState({});
+    const history = useHistory();
+
+    useEffect(() => {
+        dispatch(getTemperaments());
+        dispatch(getDogs());
+    }, [dispatch]);
+
+    const [input, setInput] = useState({
+        name: "",
+        temperament: "",
+        weight: "",
+        height: "",
+        life_span: "",
+        image: "",
+    })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log(input);
+        dispatch(postDog(input));
+        alert("Dog created successfully!");
+        setInput({
+            name: "",
+            temperament: "",
+            weight: "",
+            height: "",
+            life_span: "",
+            image: "",
+        })
+        history.push("/home", console.log('hola'));
+    }
+
+    function handleChange(e) {
+        setInput ({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    return (
+        <div className="form">
+            <div>
+                <Link to="/home">
+                    <button className="tohome">To Home</button>
+                </Link>
+            </div>
+        </div>
+    )
 }
