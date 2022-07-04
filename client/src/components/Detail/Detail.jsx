@@ -33,7 +33,7 @@ export default function Detail() {
                 <div className='image'>
                     <img src={details[0].image} alt="Img not found"  width="300px" height="300px" />
                 </div>
-                <p>This breed is: {details[0].temperament.join(', ')}</p>
+                <p>This breed is: {details[0].temperaments.join(', ')}</p>
                 <p>Height: {details[0].height} cm</p>
                 <p>Weight: {details[0].weight} kg</p>
                 <p>Life span: {details[0].life_span}</p>

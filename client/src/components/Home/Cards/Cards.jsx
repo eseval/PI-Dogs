@@ -12,7 +12,7 @@ export default function Cards({ allDogs }) {
                     id={dog.id}
                     image={dog.image}
                     name={dog.name}
-                    temperament={dog.temperament?.join(', ')}
+                    temperament={dog.temperaments}
                     // height={dog.height+ " cm"}
                 />
             )):

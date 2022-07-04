@@ -12,7 +12,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
         e.preventDefault()
         dispatch(deleteDog(id))
     }
-
+    console.log(temperament)
     return (
         <div className="card">
             <nav className='card-body'>
@@ -20,7 +20,12 @@ export default function Card({ image, name, temperament, weight, height, id }) {
                     <h1 className="card-title">{name.replace(name[0], name[0].toUpperCase())}</h1>
                 </Link>
             </nav>
-            <h5>Temperament: {temperament}</h5>
+            <div className="list-item">
+                {temperament?.map((e => {
+                    if(typeof(e) === 'string') return (<span key={e}>{e + ', '}</span>)
+                    else return (<span key={e.name}>{e.name + ', '}</span>)
+                }))}
+            </div>
             <img src={image} alt="img not found" width="150px" height="150px"/>
             <h3>Weight: {weight}</h3>
             {/* <h3>Height: {height}</h3> */}

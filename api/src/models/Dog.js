@@ -32,6 +32,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING, // string -> url
       allowNull: true,
     },
+    created: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   },
     {
       timestamps: false  //false para evitar la creacion en la bd

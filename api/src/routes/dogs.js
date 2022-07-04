@@ -16,7 +16,7 @@ const getApiInfo = async () => {
             life_span: e.life_span,
             image: e.image.url,
             //convert temperament to array of strings
-            temperament: e.temperament?.split(', ')
+            temperaments: e.temperament?.split(', ')
         }
     })
     return apiInfo
@@ -99,12 +99,12 @@ router.get('/:id', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
-    const { name, height, weight, life_span, image, temperament } = req.body
+    const { name, height, weight, life_span, image, temperaments } = req.body
     try {
         const dogsCreated = await Dog.create({ name, height, weight, life_span, image })
         const tempsDb = await Temperament.findAll({
             where: {
-                name: temperament
+                name: temperaments
             }
         })
         dogsCreated.addTemperament(tempsDb)
