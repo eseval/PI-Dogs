@@ -33,7 +33,7 @@ export default function rootReducer(state = initialState, action){
                 temperaments: action.payload
             }
         case 'FILTER_BY_TEMPERAMENT':
-            const allDogsTemps = [...state.dogs]
+            const allDogsTemps = state.allDogs
             console.log(allDogsTemps)
             const filterTemps = action.payload
             let arr = []

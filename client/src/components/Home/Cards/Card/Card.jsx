@@ -12,7 +12,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
         e.preventDefault()
         dispatch(deleteDog(id))
     }
-    console.log(temperament)
+    // console.log(temperament)
     return (
         <div className="card">
             <nav className='card-body'>

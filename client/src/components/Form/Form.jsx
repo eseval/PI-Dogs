@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { getTemperaments, getDogs, postDog } from "../../actions";
+import { getTemperaments, postDog } from "../../actions";
 import { Link, useHistory } from "react-router-dom";
 import './Form.css';
 import eliminate from './../../images/eliminar.png'
@@ -72,7 +72,7 @@ export default function Form() {
             }
         })
     })
-    console.log(allTemperaments);
+    // console.log(allTemperaments);
 
     function handleChange(e) {
         e.preventDefault();
