@@ -23,8 +23,9 @@ export default function Home() {
     const indexOfFirstDog = indexOfLastDog - dogsPerPage;
     const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog);
 
-    if(currentPage > Math.ceil(allDogs.lenght / dogsPerPage) && currentPage !== 1) {
+    if(currentPage > Math.ceil(allDogs.length / dogsPerPage) && currentPage !== 1) {
         setCurrentPage(1)
+        console.log('Estoy entrando al IF');
     }
 
     const paginado = (pageNumber) => {
@@ -43,10 +44,10 @@ export default function Home() {
 
     return (
         <div className="body">
-            <div>
+            <div className="searchBar">
                 <SearchBar />
             </div>
-            <Link to= '/dog'>Crete Dog</Link>
+            <Link to= '/dog' className="link">Crete Dog</Link>
             <h1>Dog Shelter</h1>
             <button onClick={e => {handleClick(e)}}>
                 Reset Dogs
@@ -62,6 +63,7 @@ export default function Home() {
                     dogsPerPage={dogsPerPage}
                     allDogs={allDogs}
                     paginado={paginado}
+                    currentPage={currentPage}
                 />
             </div>
             <div>

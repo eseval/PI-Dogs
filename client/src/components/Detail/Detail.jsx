@@ -29,11 +29,12 @@ export default function Detail() {
                 </h3>
             </div>
             {details[0]?.name ? (<div className="detail">
-                <h1 className= "name">{details[0].name}</h1>
+                <h1 className= "name_detail">{details[0].name}</h1>
                 <div className='image'>
                     <img src={details[0].image} alt="Img not found"  width="300px" height="300px" />
                 </div>
-                <p>This breed is: {details[0].temperaments.join(', ')}</p>
+                <p>This breed is: {details[0].temperaments ? details[0].temperaments.join(', ') : 'This breed does not have recorded temperaments'}</p>
+                {/* <p>This breed is: {details[0].temperaments.join(', ')}</p> */}
                 <p>Height: {details[0].height} cm</p>
                 <p>Weight: {details[0].weight} kg</p>
                 <p>Life span: {details[0].life_span}</p>

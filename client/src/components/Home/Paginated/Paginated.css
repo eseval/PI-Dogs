@@ -1,0 +1,4 @@
+.focus_paginate:focus{
+    background-color: rgb(245, 235, 235);
+    color: rgb(67, 128, 192);
+}

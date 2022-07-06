@@ -65,6 +65,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res, next) => {
     const id = req.params.id
     const dogsTotal = await getAllDogs()
+    console.log('id' + id);
     try {
         if(!id.includes('-')) {
             const filterDetails = await dogsTotal.filter(e => e.id === Number(id))
@@ -73,18 +74,12 @@ router.get('/:id', async (req, res, next) => {
                 res.status(404).send('Could not find any dog with that id')
         }
         else {
-            let bdDetails = await Dog.findAll({
-                where: {id},
-                include: [{
-                    model: Temperament,
-                    attributes: ['name'],
-                    through: {
-                        attributes: [],
-                    }
-                }]
-            })
+            let bdDetails = await Dog.findByPk(id)
+            console.log('bdDetails' + bdDetails);
+            const temperaments = await bdDetails.getTemperaments()
+            const temps = temperaments.map(e => e.dataValues.name)
             bdDetails.length ?
-                res.status(200).send(bdDetails) :
+                res.status(200).send({...bdDetails.dataValues, temperaments: temps}) :
                 res.status(404).send('Could not find any dog with that id')
         }
     }
@@ -100,14 +95,17 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     const { name, height, weight, life_span, image, temperaments } = req.body
+    console.log(temperaments);
     try {
         const dogsCreated = await Dog.create({ name, height, weight, life_span, image })
-        const tempsDb = await Temperament.findAll({
-            where: {
-                name: temperaments
-            }
-        })
-        dogsCreated.addTemperament(tempsDb)
+        // const tempsDb = await Temperament.findAll({
+        //     where: {
+        //         name: temperaments
+        //     }
+        // })
+        // const dog = await Dog.FindOne({where: {name: name}})
+        const tempsDB = temperaments.map(async e => await dogsCreated.addTemperament(e))
+        // dogsCreated.addTemperament(tempsDb)
         res.send('Dog created successfully')
         }
     catch (error) {

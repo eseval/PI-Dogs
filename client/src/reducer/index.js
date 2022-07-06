@@ -33,26 +33,16 @@ export default function rootReducer(state = initialState, action){
                 temperaments: action.payload
             }
         case 'FILTER_BY_TEMPERAMENT':
-            const allDogsTemps = state.allDogs
-            console.log(allDogsTemps)
-            const filterTemps = action.payload
-            let arr = []
-            if(filterTemps){
-                allDogsTemps.forEach(dog => {
-                    if(dog.temperaments && typeof dog.temperaments === 'string'){
-                        if(dog.temperaments.includes(action.payload)) arr.push(dog)
-                        console.log(dog.temperaments)
-                    } else if(dog.temperaments && typeof dog.temperaments !== 'string'){
-                        dog.temperaments.map(e => {
-                            if(e.name.includes(action.payload)) arr.push(dog)
-                        })
-                    }
-                })
-            }
-            return {
-                ...state,
-                dogs: arr
-            }
+            const allDogs = state.allDogs
+            // console.log(allDogs)
+            // console.log(action.payload)
+            const temperamentsFiltered = action.payload === 'All' ? allDogs
+                : allDogs.filter(e => e.temperaments?.includes(action.payload))
+                return {
+                    ...state,
+                    dogs: temperamentsFiltered,
+                    filters: temperamentsFiltered
+                }
         case 'ORDER_BY_NAME':
             let allDg = [...state.dogs]
             allDg = allDg.sort((a,b) => {

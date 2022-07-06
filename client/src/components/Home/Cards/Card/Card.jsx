@@ -15,12 +15,12 @@ export default function Card({ image, name, temperament, weight, height, id }) {
     // console.log(temperament)
     return (
         <div className="card">
-            <nav className='card-body'>
+            <div className='card-body'>
                 <Link className="link-title" to={`dogs/${id}`}>
                     <h1 className="card-title">{name.replace(name[0], name[0].toUpperCase())}</h1>
                 </Link>
-            </nav>
-            <div className="list-item">
+            </div>
+            <div className="list-temps">
                 {temperament?.map((e => {
                     if(typeof(e) === 'string') return (<span key={e}>{e + ', '}</span>)
                     else return (<span key={e.name}>{e.name + ', '}</span>)
