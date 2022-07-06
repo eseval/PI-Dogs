@@ -4,6 +4,7 @@ const { Router } = require('express');
 const router = Router();
 const { Dog, Temperament } = require('../db')
 const axios = require('axios');
+const { Op } = require('sequelize');
 
 const getApiInfo = async () => {
     const apiUrl = await axios(`https://api.thedogapi.com/v1/breeds?api_key=${key}`)
@@ -65,33 +66,34 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res, next) => {
     const id = req.params.id
     const dogsTotal = await getAllDogs()
-    console.log('id' + id);
+    console.log('id: ' + id);
     try {
         if(!id.includes('-')) {
             const filterDetails = await dogsTotal.filter(e => e.id === Number(id))
+            console.log('filterDetails: ' + filterDetails);
             filterDetails.length ?
                 res.status(200).send(filterDetails) :
                 res.status(404).send('Could not find any dog with that id')
         }
         else {
             let bdDetails = await Dog.findByPk(id)
-            console.log('bdDetails' + bdDetails);
-            const temperaments = await bdDetails.getTemperaments()
-            const temps = temperaments.map(e => e.dataValues.name)
+            console.log('bdDetails: ' + bdDetails);
             bdDetails.length ?
-                res.status(200).send({...bdDetails.dataValues, temperaments: temps}) :
+                res.status(200).send(bdDetails) :
                 res.status(404).send('Could not find any dog with that id')
         }
+        //     console.log('bdDetails: ' + bdDetails);
+        //     const temperaments = await bdDetails.getTemperaments()
+        //     const temps = temperaments.map(e => e.dataValues.name)
+        //     bdDetails.length ?
+        //         res.status(200).send({...bdDetails.dataValues, temperaments: temps}) :
+        //         res.status(404).send('Could not find any dog with that id')
+        // }
     }
     catch (error) {
         next(error)
     }
 })
-
-
-
-
-
 
 router.post('/', async (req, res, next) => {
     const { name, height, weight, life_span, image, temperaments } = req.body

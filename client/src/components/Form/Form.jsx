@@ -16,6 +16,9 @@ function validate(input) {
     else if(!noEmpty.test(input.name)){
         errors.name = 'Please, the name cannot start with a blank space';
     }
+    else if(input.name[0] === ' '){
+        errors.name = 'Please, the name cannot start with a blank space';
+    }
     else if(!validateName.test(input.name)){
         errors.name = 'Please, the name must be between 3 and 30 characters long';
     }
@@ -174,7 +177,7 @@ export default function Form() {
                 <div className="full_cont">
                     <div className="form">
                         <div className="form2">
-                            <div className="name">
+                            <div className="name_form">
                                 <label>Name: </label>
                                 <input
                                     className="input_form_name"
@@ -184,7 +187,7 @@ export default function Form() {
                                     onChange={e => handleChange(e)}
                                 />
                             </div>
-                            <div className="height">
+                            <div className="height_form">
                                 <label>Height Min: </label>
                                 <input
                                     className="input_form"
@@ -196,7 +199,7 @@ export default function Form() {
                                     max="100"
                                 />
                             </div>
-                            <div className="height">
+                            <div className="height_form">
                                 <label>Height Max: </label>
                                 <input
                                     className="input_form"
@@ -208,7 +211,7 @@ export default function Form() {
                                     max="100"
                                 />
                             </div>
-                            <div className="weight">
+                            <div className="weight_form">
                                 <label>Weight Min: </label>
                                 <input
                                     className="input_form"
@@ -220,7 +223,7 @@ export default function Form() {
                                     max="100"
                                 />
                             </div>
-                            <div className="weight">
+                            <div className="weight_form">
                                 <label>Weight Max: </label>
                                 <input
                                     className="input_form"
@@ -232,7 +235,7 @@ export default function Form() {
                                     max="100"
                                 />
                             </div>
-                            <div className="lifes">
+                            <div className="lifes_form">
                                 <label>Life span Min: </label>
                                 <input
                                     className="input_form"
@@ -244,7 +247,7 @@ export default function Form() {
                                     max="50"
                                 />
                             </div>
-                            <div className="lifes">
+                            <div className="lifes_form">
                                 <label>Life span Max: </label>
                                 <input
                                     className="input_form"
@@ -256,10 +259,10 @@ export default function Form() {
                                     max="50"
                                 />
                             </div>
-                            <div className="img">
-                                <label>Image URL: </label>
+                            <div className="input_form_image">
+                                <label className="input_form_label_image">Image URL: </label>
                                 <input
-                                    className="input_form_image"
+                                    className="input_form"
                                     type="url"
                                     value={input.image}
                                     name="image"

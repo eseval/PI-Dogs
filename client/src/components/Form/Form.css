@@ -35,7 +35,7 @@
     /* one item to the left and the other to the left */
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -46,4 +46,9 @@
 .input_form_image {
     /* don't move when cursor is passed on */
     position: relative;
+    left: -60px;
+}
+
+.temperaments {
+    margin-bottom: 20px;
 }

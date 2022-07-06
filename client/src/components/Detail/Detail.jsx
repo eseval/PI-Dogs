@@ -19,7 +19,7 @@ export default function Detail() {
         }
     }, [dispatch, id]);
 
-    // console.log(details[0]);
+    console.log(details);
 
     return (
         <div className="body1">

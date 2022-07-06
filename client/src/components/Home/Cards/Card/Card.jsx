@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './Card.css';
 import { deleteDog } from '../../../../actions'
 import { useDispatch } from "react-redux";
-
+import img from '../../../../images/dog.webp'
 
 export default function Card({ image, name, temperament, weight, height, id }) {
 
@@ -26,7 +26,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
                     else return (<span key={e.name}>{e.name + ', '}</span>)
                 }))}
             </div>
-            <img src={image} alt="img not found" width="150px" height="150px"/>
+            <img src={image ? image : img } alt="img not found" width="150px" height="150px"/>
             <h3>Weight: {weight}</h3>
             {/* <h3>Height: {height}</h3> */}
             <div>
