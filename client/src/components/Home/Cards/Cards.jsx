@@ -13,7 +13,6 @@ export default function Cards({ allDogs }) {
                     image={dog.image}
                     name={dog.name}
                     temperament={dog.temperaments}
-                    // height={dog.height+ " cm"}
                 />
             )):
             <div>

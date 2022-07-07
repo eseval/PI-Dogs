@@ -7,7 +7,7 @@ export default function SearchBar() {
     const [name, setName] = useState('')
     const dispatch = useDispatch();
 
-    const [cont, setCont] = useState(0)
+    // const [cont, setCont] = useState(0)
 
     function handleOnChange(e) {
         e.preventDefault()

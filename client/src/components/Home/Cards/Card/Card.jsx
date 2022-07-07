@@ -20,8 +20,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
                     <h1 className="card-title">{name.replace(name[0], name[0].toUpperCase())}</h1>
                 </Link>
             </div>
-            <div className="list-temps"
-                id="temps">
+            <div className="list-temps">
                 {temperament?.map((e => {
                     if(typeof(e) === 'string') return (<span key={e}>{e + ', '}</span>)
                     else return (<span key={e.name}>{e.name + ', '}</span>)
@@ -29,7 +28,6 @@ export default function Card({ image, name, temperament, weight, height, id }) {
             </div>
             <img src={image ? image : img } alt="img not found" width="150px" height="150px"/>
             <h3>Weight: {weight}</h3>
-            {/* <h3>Height: {height}</h3> */}
             <div>
                 {id.length > 10 ? <button onClick = {e => handleClick(e, id)}>Delete dog</button> : null}
             </div>

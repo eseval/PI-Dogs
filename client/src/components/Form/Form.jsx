@@ -7,46 +7,42 @@ import eliminate from './../../images/eliminar.png'
 import dog_gif from './../../images/dog.jpg'
 
 function validate(input) {
-    const noEmpty = /\S+/;
     const validateName = /^.{3,30}$/;
+    const validateName2 = /^[a-zA-Z]{3,30}$/;
     const errors = {};
     if (!input.name) {
         errors.name = "Name is required";
     }
-    else if(!noEmpty.test(input.name)){
+    if(input.name[0] === ' '){
         errors.name = 'Please, the name cannot start with a blank space';
     }
-    else if(input.name[0] === ' '){
-        errors.name = 'Please, the name cannot start with a blank space';
-    }
-    else if(!validateName.test(input.name)){
+    if(!validateName.test(input.name)){
         errors.name = 'Please, the name must be between 3 and 30 characters long';
     }
-    // heightMin can't be higher than heightMax
-    else if (input.heightMin && input.heightMin > input.heightMax) {
+    if(!validateName2.test(input.name)){
+        errors.name = 'Please, the name must contain only letters';
+    }
+    if (input.heightMin && input.heightMin > input.heightMax) {
         errors.heightMin = "Height min can't be higher than height max";
     }
-    else if (input.heightMax && input.heightMax < input.heightMin) {
+    if (input.heightMax && input.heightMax < input.heightMin) {
         errors.heightMax = "Height max can't be lower than height min";
     }
-    // weightMin can't be higher than weightMax
-    else if (input.weightMin && input.weightMin > input.weightMax) {
+    if (input.weightMin && input.weightMin > input.weightMax) {
         errors.weightMin = "Weight min can't be higher than weight max";
     }
-    else if (input.weightMax && input.weightMax < input.weightMin) {
+    if (input.weightMax && input.weightMax < input.weightMin) {
         errors.weightMax = "Weight max can't be lower than weight min";
     }
-    // life_spanMin can't be higher than life_spanMax
-    else if (input.life_spanMin && input.life_spanMin > input.life_spanMax) {
+    if (input.life_spanMin && input.life_spanMin > input.life_spanMax) {
         errors.life_spanMin = "Life span min can't be higher than life span max";
     }
-    else if (input.life_spanMax && input.life_spanMax < input.life_spanMin) {
+    if (input.life_spanMax && input.life_spanMax < input.life_spanMin) {
         errors.life_spanMax = "Life span max can't be lower than life span min";
     }
-    else if(!(/\.(gif|jpg|jpeg|png)$/).test(input.image)){
+    if(!(/\.(gif|jpg|jpeg|png)$/).test(input.image)){
         input.image && (errors.image = 'Please, this field must be a valid image')
     }
-    // at least one temperament must be selected
     return errors;
 }
 
@@ -286,7 +282,7 @@ export default function Form() {
                     {!Object.keys(errors).length ? (
                         ""
                     ) : (
-                        <div className="container_errors">
+                        <div className="errors_container">
                             <div>
                                 <img src={eliminate} alt="eliminate"/>
                             </div>
