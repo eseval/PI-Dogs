@@ -3,7 +3,7 @@ import axios from 'axios';
 export function getDogs() {
     return async function(dispatch) {
         try {
-            let json = await axios.get('http://localhost:3001/dogs');
+            let json = await axios.get('/dogs');
             return dispatch({
                 type: 'GET_DOGS',
                 payload: json.data
@@ -17,7 +17,7 @@ export function getDogs() {
 export function getDogByName(name) {
     return async function(dispatch) {
         try {
-            let json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+            let json = await axios.get(`/dogs?name=${name}`);
             return dispatch({
                 type: 'GET_DOG_BY_NAME',
                 payload: json.data
@@ -32,7 +32,7 @@ export function getDogByName(name) {
 export function getDogById(id) {
     return async function(dispatch) {
         try {
-            let json = await axios.get(`http://localhost:3001/dogs/${id}`);
+            let json = await axios.get(`/dogs/${id}`);
             return dispatch({
                 type: 'GET_DOG_BY_ID',
                 payload: json.data
@@ -46,7 +46,7 @@ export function getDogById(id) {
 export function getTemperaments() {
     return async function(dispatch) {
         try {
-            let json = await axios.get('http://localhost:3001/temperaments');
+            let json = await axios.get('/temperaments');
             return dispatch({
                 type: 'GET_TEMPERAMENTS',
                 payload: json.data
@@ -88,14 +88,14 @@ export function orderByCreation(payload) {
 
 export function postDog(dog) {
     return async function(dispatch) {
-        const created = await axios.post('http://localhost:3001/dogs', dog);
+        const created = await axios.post('/dogs', dog);
         return created
     }
 }
 
 export function deleteDog(id) {
     return async function(dispatch) {
-        await axios.delete(`http://localhost:3001/dogs/${id}`);
+        await axios.delete(`/dogs/${id}`);
         dispatch({
             type: 'DELETE_DOG',
             payload: id
