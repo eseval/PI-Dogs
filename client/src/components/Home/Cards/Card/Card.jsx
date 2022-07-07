@@ -30,7 +30,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
             <h3>Weight: {weight}</h3>
             {/* <h3>Height: {height}</h3> */}
             <div>
-                {id.length > 10 ? <button onClick = {e => handleClick(e, id)}>Delete game</button> : null}
+                {id.length > 10 ? <button onClick = {e => handleClick(e, id)}>Delete dog</button> : null}
             </div>
         </div>
     )

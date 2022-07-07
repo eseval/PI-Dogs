@@ -33,11 +33,14 @@ export default function rootReducer(state = initialState, action){
                 temperaments: action.payload
             }
         case 'FILTER_BY_TEMPERAMENT':
-            const allDogs = state.allDogs
+            const allDogs = [...state.allDogs]
             // console.log(allDogs)
             // console.log(action.payload)
             const temperamentsFiltered = action.payload === 'All' ? allDogs
-                : allDogs.filter(e => e.temperaments?.includes(action.payload))
+            // eslint-disable-next-line
+                : allDogs.filter(e => e.temperaments && typeof e.temperaments[0] === 'string' ? e.temperaments.includes(action.payload) : e.temperaments && e.temperaments.map (e => {
+                    if(e.name === action.payload) return e
+                }))
                 return {
                     ...state,
                     dogs: temperamentsFiltered,
@@ -71,7 +74,7 @@ export default function rootReducer(state = initialState, action){
                 }
             } else if(state.filters.length > 0){
                 let allDogsCreated = [...state.filters]
-                filter = action.payload === 'api' ? allDogsCreated.filter(e => e.created === false) : allDogsCreated.filter(e => e.created === true)
+                filter = action.payload === 'api' ? allDogsCreated.filter(e=> !isNaN(e.id) === true) : allDogsCreated.filter(e => e.created === true)
                 return {
                     ...state,
                     dogs: action.payload === 'all' ? allDogsCreated : filter

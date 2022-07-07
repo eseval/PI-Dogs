@@ -76,7 +76,16 @@ router.get('/:id', async (req, res, next) => {
                 res.status(404).send('Could not find any dog with that id')
         }
         else {
-            let bdDetails = await Dog.findByPk(id)
+            let bdDetails = await Dog.findAll({
+                where: {id},
+                include: {
+                    model: Temperament,
+                    attributes: ['id','name'],
+                    through:{
+                        attributes: []
+                    }
+                }
+            })
             console.log('bdDetails: ' + bdDetails);
             bdDetails.length ?
                 res.status(200).send(bdDetails) :
@@ -110,6 +119,20 @@ router.post('/', async (req, res, next) => {
         // dogsCreated.addTemperament(tempsDb)
         res.send('Dog created successfully')
         }
+    catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const id = req.params.id
+        Dog.destroy({
+            where:
+                { id }
+        })
+        res.send('Dog deleted successfully')
+    }
     catch (error) {
         next(error)
     }
