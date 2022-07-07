@@ -13,9 +13,6 @@ import Paginated from "./Paginated/Paginated";
 
 export default function Home() {
     const allDogs = useSelector(state => state.dogs);
-
-
-
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [dogsPerPage] = useState(8)

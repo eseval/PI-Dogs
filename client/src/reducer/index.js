@@ -34,15 +34,13 @@ export default function rootReducer(state = initialState, action){
             }
         case 'FILTER_BY_TEMPERAMENT':
             const allDogs = [...state.allDogs]
-            // console.log(allDogs)
-            console.log(action.payload)
+            console.log(allDogs)
+            // console.log(action.payload)
             const temperamentsFiltered = action.payload === 'All'
                 ? allDogs
-                : allDogs.filter(e => e.temperaments && typeof e.temperaments[0] === 'string'
-                ? e.temperaments.includes(action.payload)// eslint-disable-next-line
-                : e.temperaments && e.temperaments.map (e => {
-                    if(e.name === action.payload) return e
-                }))
+                : allDogs.filter(dog => dog.temperaments && typeof dog.temperaments[0] === 'string'
+                ? dog.temperaments.includes(action.payload)// eslint-disable-next-line
+                : dog.temperaments && dog.temperaments.map (e => e.name).includes(action.payload))
                 console.log(temperamentsFiltered);
                 return {
                     ...state,

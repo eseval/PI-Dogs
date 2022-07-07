@@ -7,6 +7,8 @@ export default function SearchBar() {
     const [name, setName] = useState('')
     const dispatch = useDispatch();
 
+    const [cont, setCont] = useState(0)
+
     function handleOnChange(e) {
         e.preventDefault()
         setName(e.target.value)
@@ -27,6 +29,16 @@ export default function SearchBar() {
         }
         }
 
+    // function handleClick(e){
+    //     e.preventDefault()
+    //     setCont (cont + 1)
+    // }
+
+    // function handleMyClick(e){
+    //     e.preventDefault()
+    //     setCont (cont - 1)
+    // }
+
     return (
         <div>
             <div>
@@ -43,6 +55,17 @@ export default function SearchBar() {
                 onClick={e => handleSubmit(e)}
                 >Search</button>
             </div>
+            {/* <div>
+                <button
+                onClick={handleClick}>
+                    Click +
+                </button>
+                <button
+                onClick={handleMyClick}>
+                    Click -
+                </button>
+                <h1>{cont}</h1>
+            </div> */}
         </div>
     )
 }

@@ -20,7 +20,8 @@ export default function Card({ image, name, temperament, weight, height, id }) {
                     <h1 className="card-title">{name.replace(name[0], name[0].toUpperCase())}</h1>
                 </Link>
             </div>
-            <div className="list-temps">
+            <div className="list-temps"
+                id="temps">
                 {temperament?.map((e => {
                     if(typeof(e) === 'string') return (<span key={e}>{e + ', '}</span>)
                     else return (<span key={e.name}>{e.name + ', '}</span>)
