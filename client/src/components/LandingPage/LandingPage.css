@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: -22px;
 }
 
 .button {
@@ -23,4 +24,17 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+.landing_page {
+    /* glass effect */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    align-self: flex-start;
+    /* align to the left */
+    margin-left: 400px;
+    margin-top: -180px;
+    height: 150px;
+    width: 300px;
+
 }

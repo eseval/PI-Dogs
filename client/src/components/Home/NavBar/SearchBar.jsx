@@ -28,7 +28,7 @@ export default function SearchBar() {
         <div>
             <div>
                 {/* <h1>La perrera</h1> */}
-                <input className="input_"
+                <input className="input_searchBar"
                     type="text"
                     placeholder="Search your dog"
                     value={name}

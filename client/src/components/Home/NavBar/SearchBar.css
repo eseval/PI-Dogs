@@ -42,6 +42,7 @@
     box-shadow: 0px 0px 10px #000;
 }
 
-.input_ {
+.input_searchBar {
     margin-top: 30px;
+    border-radius: 10px;
 }

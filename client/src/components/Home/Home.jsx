@@ -48,7 +48,7 @@ export default function Home() {
                 <SearchBar />
             </div>
             <Link to= '/dog' className="link">Crete Dog</Link>
-            <h1>Dog Shelter</h1>
+            <h1>Dogs' Shelter</h1>
             <button onClick={e => {handleClick(e)}}>
                 Reset Dogs
             </button>
