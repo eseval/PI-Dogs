@@ -22,7 +22,10 @@ export default function SearchBar() {
         if(e.key === 'Enter'){
             handleSubmit(e);
         }
-    }
+        else if(name[0] === ' '){
+            setName(name.substring(1))
+        }
+        }
 
     return (
         <div>

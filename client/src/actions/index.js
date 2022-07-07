@@ -23,9 +23,17 @@ export function getDogByName(name) {
                 payload: json.data
             })
         } catch (error) {
-            alert ('Error getting dog by name');
+            if(name[0] === ' '){
+                alert('Please enter a valid name')
+            }
+            else{
+                alert('Dog not found')
+            }
             console.log(error);
         }
+        //     alert ('Error getting dog by name');
+        //     console.log(error);
+        // }
     }
 }
 
