@@ -101,16 +101,6 @@ export function postDog(dog) {
     }
 }
 
-export function deleteDog(id) {
-    return async function(dispatch) {
-        await axios.delete(`/dogs/${id}`);
-        dispatch({
-            type: 'DELETE_DOG',
-            payload: id
-        })
-    }
-}
-
 export function clearState(){
     return {
         type: "CLEAR_STATE",

@@ -46,7 +46,7 @@ export default function Home() {
             </div>
             <Link to= '/dog' className="link">Crete Dog</Link>
             <h1>Dogs' Shelter</h1>
-            <button onClick={e => {handleClick(e)}}>
+            <button className="reset_button" onClick={e => {handleClick(e)}}>
                 Reset Dogs
             </button>
             <div className="filters">
