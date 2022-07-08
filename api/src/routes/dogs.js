@@ -105,7 +105,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 
-// 
+//
 router.post('/', async (req, res, next) => {
     const { name, height, weight, life_span, image, temperaments } = req.body
     // console.log(temperaments);
