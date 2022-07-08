@@ -22,23 +22,23 @@ function validate(input) {
     if(!validateName2.test(input.name)){
         errors.name = 'Please, the name must contain only letters';
     }
-    if (input.heightMin && input.heightMin > input.heightMax) {
-        errors.heightMin = "Height min can't be higher than height max";
+    if (input.heightMin && input.heightMin >= input.heightMax) {
+        errors.heightMin = "Height min can't be higher or equal than height max";
     }
-    if (input.heightMax && input.heightMax < input.heightMin) {
-        errors.heightMax = "Height max can't be lower than height min";
+    if (input.heightMax && input.heightMax <= input.heightMin) {
+        errors.heightMax = "Height max can't be lower or equal than height min";
     }
-    if (input.weightMin && input.weightMin > input.weightMax) {
-        errors.weightMin = "Weight min can't be higher than weight max";
+    if (input.weightMin && input.weightMin >= input.weightMax) {
+        errors.heightMin = "Weight min can't be higher or equal than weight max";
     }
-    if (input.weightMax && input.weightMax < input.weightMin) {
-        errors.weightMax = "Weight max can't be lower than weight min";
+    if (input.weightMax && input.weightMax <= input.weightMin) {
+        errors.weightMax = "Weight max can't be lower or equal than weight min";
     }
-    if (input.life_spanMin && input.life_spanMin > input.life_spanMax) {
-        errors.life_spanMin = "Life span min can't be higher than life span max";
+    if (input.life_spanMin && input.life_spanMin >= input.life_spanMax) {
+        errors.life_spanMin = "Life span min can't be higher or equal than life span max";
     }
-    if (input.life_spanMax && input.life_spanMax < input.life_spanMin) {
-        errors.life_spanMax = "Life span max can't be lower than life span min";
+    if (input.life_spanMax && input.life_spanMax <= input.life_spanMin) {
+        errors.life_spanMax = "Life span max can't be lower or equal than life span min";
     }
     if(!(/\.(gif|jpg|jpeg|png)$/).test(input.image)){
         input.image && (errors.image = 'Please, this field must be a valid image')
@@ -357,13 +357,7 @@ export default function Form() {
                             className="submit"
                             type="submit"
                             value={input.created}
-                            disabled={Object.keys(errors).length > 0 ||
-                                input.name === "" ||
-                                input.description === "" ||
-                                input.released === "" ||
-                                input.rating === "" ||
-                                input.genres.length === 0 ||
-                                input.platforms.length === 0}
+                            disabled={ Object.keys(errors).length > 0 }
                             />
                     )}
                 </div>

@@ -104,19 +104,14 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+
+// 
 router.post('/', async (req, res, next) => {
     const { name, height, weight, life_span, image, temperaments } = req.body
-    console.log(temperaments);
+    // console.log(temperaments);
     try {
         const dogsCreated = await Dog.create({ name, height, weight, life_span, image })
-        // const tempsDb = await Temperament.findAll({
-        //     where: {
-        //         name: temperaments
-        //     }
-        // })
-        // const dog = await Dog.FindOne({where: {name: name}})
         const tempsDB = temperaments.map(async e => await dogsCreated.addTemperament(e))
-        // dogsCreated.addTemperament(tempsDb)
         res.send('Dog created successfully')
         }
     catch (error) {

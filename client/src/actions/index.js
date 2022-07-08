@@ -1,18 +1,36 @@
 import axios from 'axios';
 
+// export function getDogs() {
+//     return async function(dispatch) {
+//         try {
+//             let json = await axios.get('/dogs');
+//             return dispatch({
+//                 type: 'GET_DOGS',
+//                 payload: json.data
+//             })
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     }
+// }
+
+// getDogs() using .then()
 export function getDogs() {
-    return async function(dispatch) {
+    return function(dispatch) {
         try {
-            let json = await axios.get('/dogs');
-            return dispatch({
-                type: 'GET_DOGS',
-                payload: json.data
+            axios.get('/dogs')
+            .then(function(json) {
+                return dispatch({
+                    type: 'GET_DOGS',
+                    payload: json.data
+                })
             })
         } catch (error) {
             console.log(error);
         }
     }
 }
+
 
 export function getDogByName(name) {
     return async function(dispatch) {
@@ -37,6 +55,23 @@ export function getDogByName(name) {
     }
 }
 
+// export function getDogById(id) {
+//     return function(dispatch) {
+//         try {
+//             axios.get(`/dogs/${id}`)
+//             .then(function(json) {
+//                 return dispatch({
+//                     type: 'GET_DOG_BY_ID',
+//                     payload: json.data
+//                 })
+//             })
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     }
+// }
+
+
 export function getDogById(id) {
     return async function(dispatch) {
         try {
@@ -52,18 +87,34 @@ export function getDogById(id) {
 }
 
 export function getTemperaments() {
-    return async function(dispatch) {
+    return function (dispatch) {
         try {
-            let json = await axios.get('/temperaments');
-            return dispatch({
-                type: 'GET_TEMPERAMENTS',
-                payload: json.data
+            axios.get('/temperaments')
+            .then(function(json) {
+                return dispatch({
+                    type: 'GET_TEMPERAMENTS',
+                    payload: json.data
+                })
             })
         } catch (error) {
             console.log(error);
         }
     }
 }
+
+// export function getTemperaments() {
+//     return async function(dispatch) {
+//         try {
+//             let json = await axios.get('/temperaments');
+//             return dispatch({
+//                 type: 'GET_TEMPERAMENTS',
+//                 payload: json.data
+//             })
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     }
+// }
 
 export function filterDogsByTemperament(payload) {
     return {
