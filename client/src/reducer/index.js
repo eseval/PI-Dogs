@@ -102,6 +102,12 @@ export default function rootReducer(state = initialState, action){
             return {
                 ...state,
             }
+        case 'DELETE_DOG':
+            return {
+                ...state,
+                dogs: state.dogs.filter(e => e.id !== action.payload),
+                allDogs: state.allDogs.filter(e => e.id !== action.payload)
+            }
         case 'CLEAR_STATE':
             return {
                 ...state,
