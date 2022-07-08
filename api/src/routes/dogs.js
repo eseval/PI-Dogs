@@ -105,7 +105,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 
-//
+// 
 router.post('/', async (req, res, next) => {
     const { name, height, weight, life_span, image, temperaments } = req.body
     // console.log(temperaments);
@@ -114,20 +114,6 @@ router.post('/', async (req, res, next) => {
         const tempsDB = temperaments.map(async e => await dogsCreated.addTemperament(e))
         res.send('Dog created successfully')
         }
-    catch (error) {
-        next(error)
-    }
-})
-
-router.delete('/:id', async (req, res, next) => {
-    try {
-        const id = req.params.id
-        Dog.destroy({
-            where:
-                { id }
-        })
-        res.send('Dog deleted successfully')
-    }
     catch (error) {
         next(error)
     }
