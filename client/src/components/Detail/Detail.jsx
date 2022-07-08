@@ -31,7 +31,7 @@ export default function Detail() {
         <div className="body1">
             <div className="separate">
                 <h3>
-                    <a className="tohome" href="http://localhost:3000/home">To home</a>
+                    <a className="tohome" href="/home">To home</a>
                 </h3>
             </div>
             {details[0]?.name ? (<div className="detail">
